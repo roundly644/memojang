@@ -9,6 +9,12 @@ const authToken = process.env.TURSO_TOKEN;
 if (!url) {
   throw new Error("TURSO_URL 환경변수가 설정되지 않았습니다.");
 }
+if (!/^(libsql|wss?|https?|file):/.test(url)) {
+  throw new Error(
+    `TURSO_URL 형식이 올바르지 않습니다 (libsql://... 형태여야 함). ` +
+      `현재 값: '${url.slice(0, 20)}...' — TURSO_URL과 TURSO_TOKEN이 뒤바뀌지 않았는지 확인하세요.`
+  );
+}
 
 export const db = createClient({ url, authToken });
 
