@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나만의 메모장</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>" />
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 사이드바 -->
+      <aside id="sidebar">
+        <div class="brand">📝 메모장</div>
+        <button id="newNoteBtn" class="primary-btn">＋ 새 노트</button>
+
+        <nav class="nav">
+          <div class="nav-item active" data-view="all">📄 모든 노트</div>
+          <div class="nav-item" data-view="trash">🗑️ 휴지통</div>
+        </nav>
+
+        <div class="section">
+          <div class="section-head">
+            <span>노트북</span>
+            <button id="newNotebookBtn" title="노트북 추가">＋</button>
+          </div>
+          <ul id="notebookList" class="list"></ul>
+        </div>
+
+        <div class="section">
+          <div class="section-head"><span>태그</span></div>
+          <ul id="tagList" class="list"></ul>
+        </div>
+      </aside>
+
+      <!-- 노트 목록 -->
+      <section id="noteListPane">
+        <div class="search-bar">
+          <input id="searchInput" type="search" placeholder="🔍 검색..." />
+        </div>
+        <div id="listHeader" class="list-header">모든 노트</div>
+        <ul id="noteList" class="note-list"></ul>
+      </section>
+
+      <!-- 에디터 -->
+      <section id="editorPane">
+        <div id="emptyState" class="empty-state">
+          <div>
+            <div class="empty-icon">📝</div>
+            <p>노트를 선택하거나 새로 만들어 보세요.</p>
+          </div>
+        </div>
+
+        <div id="editor" class="editor hidden">
+          <div class="editor-toolbar-top">
+            <span id="noteMeta" class="note-meta"></span>
+            <div class="editor-actions">
+              <button id="pinBtn" title="고정">📌</button>
+              <button id="trashBtn" title="휴지통으로">🗑️</button>
+              <button id="restoreBtn" class="hidden" title="복원">♻️ 복원</button>
+              <button id="deleteBtn" class="hidden danger" title="영구 삭제">❌ 완전삭제</button>
+            </div>
+          </div>
+          <input id="titleInput" class="title-input" placeholder="제목 없음" />
+          <div class="tags-row">
+            <select id="notebookSelect" class="notebook-select"></select>
+            <div id="tagChips" class="tag-chips"></div>
+            <input id="tagInput" class="tag-input" placeholder="+ 태그 (Enter)" />
+          </div>
+          <div id="quillEditor"></div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
